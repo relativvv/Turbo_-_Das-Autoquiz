@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  turbo_backend:
+    build: ./backend
+    container_name: turbo_backend
+    restart: unless-stopped
+    volumes:
+      - ../backend:/usr/share/nginx/html
+    networks:
+      - turbo
+    ports:
+      - "8000:80"
+
+  frontend:
+    build: ./frontend
+    container_name: turbo_frontend
+    restart: unless-stopped
+    volumes:
+      - ../frontend:/root/proj
+    ports:
+      - 4200:4200
+    networks:
+      - turbo
+
+  turbo_mysql:
+    image: mysql:8.0.28-oracle
+    container_name: turbo_database
+    restart: unless-stopped
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=turbo
+      - PGID=0
+      - PUID=0
+    networks:
+      - turbo
+    ports:
+      - 3306:3306
+
+  turbo_adminer:
+    image: adminer:latest
+    container_name: turbo_adminer
+    restart: unless-stopped
+    environment:
+      - ADMINER_DESIGN=pepa-linha
+      - ADMINER_DEFAULT_SERVER=mysql
+    depends_on:
+      - turbo_database
+    networks:
+      - turbo
+    ports:
+      - 8080:8080
+
+networks:
+  turbo:
+
+volumes:
+  mysql_data: {}
