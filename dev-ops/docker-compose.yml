@@ -47,7 +47,7 @@ services:
       - ADMINER_DESIGN=pepa-linha
       - ADMINER_DEFAULT_SERVER=mysql
     depends_on:
-      - turbo_database
+      - turbo_mysql
     networks:
       - turbo
     ports:
