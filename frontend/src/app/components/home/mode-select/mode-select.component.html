@@ -1,0 +1,15 @@
+<div class="container">
+  <h5>{{ text }}</h5>
+  <ng-container [ngSwitch]="type">
+    <img
+      *ngSwitchCase="'category'"
+      class="category_image"
+      src=""
+    />
+    <img
+      *ngSwitchCase="'difficulty'"
+      class="difficulty_image"
+      src=""
+    />
+  </ng-container>
+</div>
