@@ -1,0 +1,21 @@
+:host {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--image {
+      width: 64px;
+      height: 64px;
+      border-radius: 360px;
+      border: solid 1px white;
+      -webkit-user-drag: none;
+    }
+  }
+
+  .container:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.01);
+  }
+}
