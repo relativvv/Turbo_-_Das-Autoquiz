@@ -7,18 +7,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import {SharedModule} from "./shared/shared.module";
 import { ModeSelectComponent } from './components/home/mode-select/mode-select.component';
+import { StaticsTableComponent } from './components/home/statics-table/statics-table.component';
+import {MatTableModule} from "@angular/material/table";
+import {NgParticlesModule} from "ng-particles";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ModeSelectComponent
+    ModeSelectComponent,
+    StaticsTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
+    NgParticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
