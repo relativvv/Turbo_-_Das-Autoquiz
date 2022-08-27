@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +9,7 @@ import { ModeSelectComponent } from './components/home/mode-select/mode-select.c
 import { StaticsTableComponent } from './components/home/statics-table/statics-table.component';
 import {MatTableModule} from "@angular/material/table";
 import {NgParticlesModule} from "ng-particles";
+import {NgsRevealModule} from "ngx-scrollreveal";
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import {NgParticlesModule} from "ng-particles";
     BrowserAnimationsModule,
     SharedModule,
     MatTableModule,
-    NgParticlesModule
+    NgParticlesModule,
+    NgsRevealModule
   ],
   providers: [],
   bootstrap: [AppComponent]
