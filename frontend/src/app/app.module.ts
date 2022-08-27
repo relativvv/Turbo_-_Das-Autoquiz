@@ -17,12 +17,17 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import { SpecifyModeComponent } from './components/specify-mode/specify-mode.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ModeSelectComponent,
+    StaticsTableComponent,
+    SpecifyModeComponent,
+    NotFoundComponent
     StaticsTableComponent,
     RegisterComponent,
     LoginComponent

@@ -1,62 +1,82 @@
 :host {
   .container {
+    z-index: 1000;
+    width: 400px;
+    height: 500px;
+  }
+
+  .category_image, .difficulty_image {
+    z-index: 1000;
+    width: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border: solid 1px white;
     border-radius: 12px;
-    width: 400px;
-    height: 500px;
-
-    img {
-      flex-shrink: 0;
-      min-width: 100%;
-      min-height: 100%;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
 
     h5 {
       position: absolute;
       user-select: none;
       font-size: 55px;
       font-family: turbo_font, sans-serif;
-      text-shadow: 1px 1px 0px black;
+      text-shadow: 1px 1px 0 black;
       letter-spacing: 2px;
       font-weight: 0;
       z-index: 1000;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 
   .category_image {
-    background: url("/assets/mode-images/categories_no_gif.jpg");
-    filter: grayscale(1);
+    img {
+      background: url("/assets/mode-images/categories_no_gif.jpg") no-repeat center;
+      filter: grayscale(1);
+      background-size: cover;
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 
   .category_image:hover {
-    background: url("/assets/mode-images/categories.gif");
-    filter: grayscale(0);
     cursor: pointer;
-    transition: 0.2s;
-    transform: scale(1.03)
+
+    img {
+      background: url("/assets/mode-images/categories.gif") no-repeat center;
+      filter: grayscale(0);
+      transition: 0.2s;
+      transform: scale(1.03);
+      background-size: cover;
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 
   .difficulty_image {
-    background: url("/assets/mode-images/difficulty_no_gif.jpg");
-    filter: grayscale(1);
+    img {
+      background: url("/assets/mode-images/difficulty_no_gif.jpg") no-repeat center;
+      filter: grayscale(1);
+      background-size: cover;
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 
   .difficulty_image:hover {
-    background: url("/assets/mode-images/difficulty.gif");
-    filter: grayscale(0);
     cursor: pointer;
-    transition: 0.2s;
-    transform: scale(1.03)
+
+    img {
+      background: url("/assets/mode-images/difficulty.gif") no-repeat center;
+      filter: grayscale(0);
+      transition: 0.2s;
+      transform: scale(1.03);
+      background-size: cover;
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 }
