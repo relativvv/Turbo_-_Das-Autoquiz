@@ -19,6 +19,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { SpecifyModeComponent } from './components/specify-mode/specify-mode.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ModeCardComponent } from './components/specify-mode/mode-card/mode-card.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ModeSelectComponent,
     StaticsTableComponent,
     SpecifyModeComponent,
-    NotFoundComponent
+    NotFoundComponent,
     StaticsTableComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ModeCardComponent
   ],
   imports: [
     BrowserModule,

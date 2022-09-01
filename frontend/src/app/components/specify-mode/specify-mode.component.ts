@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-specify-mode',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecifyModeComponent implements OnInit {
 
-  constructor() { }
+  mode: 'difficulty' | 'category';
+
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.getMode();
+  }
+
+  private getMode(): void {
+    this.route.params.subscribe(params => {
+      this.mode = params['selectedMode'];
+    })
   }
 
 }
