@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {UserService} from "../../../services/user.service";
 
 type Mode = 'difficulty' | 'category';
 
@@ -12,9 +13,15 @@ export class ModeSelectComponent implements OnInit {
   @Input() type: Mode;
   @Input() text: string;
 
-  constructor() { }
+  constructor(
+    private readonly userService: UserService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
   }
 
 }
