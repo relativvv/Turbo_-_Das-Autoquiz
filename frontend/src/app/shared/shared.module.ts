@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 
@@ -20,7 +21,8 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule { }

@@ -10,13 +10,22 @@ import { StaticsTableComponent } from './components/home/statics-table/statics-t
 import {MatTableModule} from "@angular/material/table";
 import {NgParticlesModule} from "ng-particles";
 import {NgsRevealModule} from "ngx-scrollreveal";
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ModeSelectComponent,
-    StaticsTableComponent
+    StaticsTableComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +34,12 @@ import {NgsRevealModule} from "ngx-scrollreveal";
     SharedModule,
     MatTableModule,
     NgParticlesModule,
-    NgsRevealModule
+    NgsRevealModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
