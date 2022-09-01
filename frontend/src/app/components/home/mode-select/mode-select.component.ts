@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 type Mode = 'difficulty' | 'category';
 
