@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-not-found',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly titleService: Title
+  ) {
+    this.titleService.setTitle('Turbo - Das Autoquiz | 404');
+  }
 
   ngOnInit(): void {
   }
