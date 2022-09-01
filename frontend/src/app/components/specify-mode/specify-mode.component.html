@@ -1,12 +1,12 @@
 <app-header></app-header>
 <button class="back" mat-raised-button routerLink=""><mat-icon>arrow_left</mat-icon> Zurück</button>
 <ng-container [ngSwitch]="mode">
-  <div *ngSwitchCase="'difficulty'" class="difficulties">
+  <div *ngSwitchCase="'difficulty'" class="difficulties" @fade>
     <app-mode-card text="Einfach" imageSource="../../assets/difficulty-images/twingo.jpg"></app-mode-card>
     <app-mode-card text="Mittel" imageSource="../../assets/difficulty-images/audi-a4.jpg"></app-mode-card>
     <app-mode-card text="Schwer" imageSource="../../assets/difficulty-images/urus.jpg"></app-mode-card>
   </div>
-  <div *ngSwitchCase="'category'" class="categories">
+  <div *ngSwitchCase="'category'" class="categories" @fade>
     <app-mode-card text="Automarken" imageSource="../../assets/difficulty-images/urus.jpg"></app-mode-card>
   </div>
 </ng-container>
