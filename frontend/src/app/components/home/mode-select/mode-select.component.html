@@ -1,15 +1,16 @@
 <div class="container">
-  <h5>{{ text }}</h5>
   <ng-container [ngSwitch]="type">
-    <img
-      *ngSwitchCase="'category'"
-      class="category_image"
-      src=""
-    />
-    <img
-      *ngSwitchCase="'difficulty'"
-      class="difficulty_image"
-      src=""
-    />
+    <div class="category_image" *ngSwitchCase="'category'">
+      <h5>Kategorie</h5>
+      <img
+        src=""
+      />
+    </div>
+    <div class="difficulty_image" *ngSwitchCase="'difficulty'">
+      <h5>Schwierigkeit</h5>
+      <img
+        src=""
+      />
+    </div>
   </ng-container>
 </div>

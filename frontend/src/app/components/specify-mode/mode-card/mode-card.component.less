@@ -1,0 +1,45 @@
+:host {
+  z-index: 10000;
+
+  .container {
+    width: 350px;
+    height: 500px;
+
+    &--mode {
+      z-index: 10000;
+      width: 350px;
+      height: 500px;
+
+      h1 {
+        position: relative;
+        width: 102%;
+        text-align: center;
+        top: 250px;
+        font-size: 48px;
+        font-weight: 600;
+        text-shadow: 1px 1px 1px black;
+        z-index: 10000;
+      }
+
+      img {
+        width: 350px;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 4px;
+        box-shadow: 2px 2px 10px #353535;
+        -webkit-user-drag: none;
+        filter: grayscale(1);
+      }
+    }
+
+    &--mode:hover {
+      transform: scale(1.05);
+      transition: 0.3s;
+      cursor: pointer;
+
+      img {
+        filter: grayscale(0);
+      }
+    }
+  }
+}
