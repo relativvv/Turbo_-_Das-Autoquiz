@@ -20,6 +20,10 @@ import {MatButtonModule} from "@angular/material/button";
 import { SpecifyModeComponent } from './components/specify-mode/specify-mode.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ModeCardComponent } from './components/specify-mode/mode-card/mode-card.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ChangePasswordModalComponent } from './components/user-details/change-password-modal/change-password-modal.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { ModeCardComponent } from './components/specify-mode/mode-card/mode-card
     StaticsTableComponent,
     RegisterComponent,
     LoginComponent,
-    ModeCardComponent
+    ModeCardComponent,
+    UserDetailsComponent,
+    ChangePasswordModalComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { ModeCardComponent } from './components/specify-mode/mode-card/mode-card
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
