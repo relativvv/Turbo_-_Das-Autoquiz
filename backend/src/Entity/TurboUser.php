@@ -31,6 +31,16 @@ class TurboUser
     #[ORM\Column(nullable: true)]
     private ?int $playedGames = null;
 
+    public function toArray(): array {
+        return [
+            'username' => $this->getUsername(),
+            'email' => $this->getEmail(),
+            'highestStreak' => $this->getHighestStreak(),
+            'highestOverallStreak' => $this->getHighestOverallStreak(),
+            'playedGames' => $this->getPlayedGames()
+        ];
+    }
+
     public function getId(): ?int
     {
         return $this->id;

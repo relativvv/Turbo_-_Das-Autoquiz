@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backend: 'http://api.turbo.relativv.de'
 };

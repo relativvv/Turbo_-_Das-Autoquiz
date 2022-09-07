@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Exception\SystemException;
 use App\Service\AuthenticationService;
 use App\Service\ValidationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +26,7 @@ class UserController extends AbstractController
     /**
      * @Route("/api/user/create", name="api.user.create", methods={"POST"})
      */
-    public function create(Request $request): Response
+    public function create(Request $request): JsonResponse
     {
         $data = $request->request->all();
 
@@ -45,19 +47,19 @@ class UserController extends AbstractController
 
         $this->validationService->validate($data, $collection);
 
-        $this->authenticationService->createIdentity(
+        $user = $this->authenticationService->createIdentity(
             $data['username'],
             $data['email'],
             $data['password']
         );
 
-        return new Response('', Response::HTTP_NO_CONTENT);
+        return new JsonResponse($user->toArray(), Response::HTTP_OK);
     }
 
     /**
      * @Route("/api/user/authenticate", name="api.user.authenticate", methods={"POST"})
      */
-    public function authenticate(Request $request): Response
+    public function authenticate(Request $request): JsonResponse
     {
         $data = $request->request->all();
 
@@ -66,9 +68,20 @@ class UserController extends AbstractController
             'password' => new NotBlank()
         ]));
 
-        $this->authenticationService->authenticate($request->get('identity'), $request->get('password'));
+        $user = $this->authenticationService->authenticate($request->get('identity'), $request->get('password'));
 
-        return new Response('', Response::HTTP_NO_CONTENT);
+        return new JsonResponse($user->toArray(), Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/api/user/{username}", name="api.user.get", methods={"GET"})
+     */
+    public function returnUser(Request $request): JsonResponse {
+        if(!($user = $request->getSession()->get('identity'))) {
+            throw new SystemException('Du bist nicht eingeloggt');
+        }
+
+        return new JsonResponse($user->toArray());
     }
 
     /**
