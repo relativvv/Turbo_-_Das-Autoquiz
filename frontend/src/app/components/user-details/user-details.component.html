@@ -1,0 +1,63 @@
+<app-header></app-header>
+<button class="back" mat-raised-button routerLink=""><mat-icon>arrow_left</mat-icon> Zurück</button>
+<div class="container">
+  <div class="container--image">
+    <img src="assets/logo.png">
+    <button class="container--image__upload" color="warn" mat-raised-button><mat-icon>upload</mat-icon> Hochladen</button>
+  </div>
+  <div class="container--details">
+    <mat-card>
+      <mat-card-content>
+        <div class="container--details__stats">
+          <div class="container--details__stats__entry">
+            <h2>test123</h2>
+            <hr/>
+            <h3>12</h3>
+          </div>
+
+          <div class="container--details__stats__entry">
+            <h2>test123</h2>
+            <hr/>
+            <h3>12</h3>
+          </div>
+
+          <div class="container--details__stats__entry">
+            <h2>test123</h2>
+            <hr/>
+            <h3>12</h3>
+          </div>
+        </div>
+
+        <hr />
+
+        <form [formGroup]="userForm" class="user-details-data">
+          <mat-form-field class="user-details-data--form-field" appearance="standard">
+            <mat-label>Benutzername</mat-label>
+            <input matInput formControlName="username" placeholder="Username">
+          </mat-form-field>
+
+          <mat-form-field class="user-details-data--form-field" appearance="standard">
+            <mat-label>E-Mail Adresse</mat-label>
+            <input matInput formControlName="email" placeholder="Placeholder">
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+
+          <div class="user-details-data--form-field form-field-container">
+            <mat-form-field class="user-details-data--form-field" appearance="standard">
+              <mat-label>Passwort</mat-label>
+              <input type="password" disabled matInput formControlName="password" placeholder="Passwort">
+              <mat-icon matSuffix>fingerprint</mat-icon>
+            </mat-form-field>
+            <button color="primary" mat-raised-button (click)="openChangePassword()">Ändern</button>
+          </div>
+        </form>
+
+        <div class="save-button-container">
+          <button class="save-button" color="warn" mat-raised-button>
+            <mat-icon>check</mat-icon> Speichern
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

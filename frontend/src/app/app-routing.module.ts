@@ -5,12 +5,14 @@ import {SpecifyModeComponent} from "./components/specify-mode/specify-mode.compo
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {UserDetailsComponent} from "./components/user-details/user-details.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'mode/:selectedMode', component: SpecifyModeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'user/:userName', component: UserDetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
