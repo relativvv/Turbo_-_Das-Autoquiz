@@ -7,12 +7,14 @@
 
     &--register-card {
       &__content {
-        display: flex;
-        flex-direction: column;
+          form {
+          display: flex;
+          flex-direction: column;
 
-        mat-form-field {
-          width: 400px;
-          margin: 12px;
+          mat-form-field {
+            width: 400px;
+            margin: 12px;
+          }
         }
       }
     }
@@ -26,5 +28,9 @@
   .back {
     margin-top: 14px;
     margin-left: 18px;
+  }
+
+  .disabled {
+    background-color: gray !important;
   }
 }

@@ -24,6 +24,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import {ReactiveFormsModule} from "@angular/forms";
 import { ChangePasswordModalComponent } from './components/user-details/change-password-modal/change-password-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

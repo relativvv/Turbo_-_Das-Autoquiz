@@ -19,14 +19,14 @@ class AuthenticationService
         $this->session = $this->requestStack->getSession();
     }
 
-    public function authenticate(string $username, string $password): void
+    public function authenticate(string $username, string $password): TurboUser
     {
         $user = $this->userRepository->findOneByIdentity($username);
 
         if ($user !== null && password_verify($password, $user->getPassword())) {
             $this->session->set('identity', $user);
 
-            return;
+            return $user;
         }
 
         throw new SystemException('Es konnte kein Nutzer mit den angegebenen Daten gefunden wurde.');
@@ -36,7 +36,7 @@ class AuthenticationService
         string $username,
         string $email,
         string $password
-    ): void
+    ): TurboUser
     {
         if ($this->userRepository->userExist($username, $email)) {
             throw new SystemException('Der Nutzername oder die E-Mail Adresse ist bereits vergeben.');
@@ -48,6 +48,7 @@ class AuthenticationService
         $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
 
         $this->userRepository->add($user, true);
+        return $user;
     }
 
     public function destroy(): void

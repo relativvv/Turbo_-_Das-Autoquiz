@@ -6,6 +6,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -17,12 +18,13 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
   exports: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    MatButtonToggleModule
-  ]
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        MatButtonToggleModule,
+        MatMenuModule
+    ]
 })
 export class SharedModule { }

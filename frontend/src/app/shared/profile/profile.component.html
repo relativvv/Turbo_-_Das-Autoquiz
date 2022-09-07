@@ -5,7 +5,11 @@
       class="container--image"
       alt="profile_picture"
       [src]="'assets/logo.png'"
+      [matMenuTriggerFor]="menu"
     />
+    <mat-menu #menu="matMenu">
+      <button (click)="logout()" mat-menu-item>Ausloggen</button>
+    </mat-menu>
   </ng-container>
   <ng-template #notLoggedIn>
     <mat-button-toggle-group name="login_register" aria-label="Login Register">
