@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -39,28 +39,28 @@ class TurboUserRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return TurboUser[] Returns an array of TurboUser objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findOneByIdentity(string $identity): ?TurboUser
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.username = :identity OR u.email = :identity')
+            ->setParameters([
+                'identity' => $identity,
+            ])
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-//    public function findOneBySomeField($value): ?TurboUser
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function userExist(string $username, string $email): bool
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.username = :username OR u.email = :email')
+            ->setParameters([
+                 'username' => $username,
+                 'email' => $email,
+            ])
+            ->getQuery()
+            ->getSingleScalarResult() > 0;
+    }
 }
