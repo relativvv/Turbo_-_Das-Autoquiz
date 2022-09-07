@@ -5,14 +5,19 @@ namespace App\Service;
 use App\Entity\TurboUser;
 use App\Exception\SystemException;
 use App\Repository\TurboUserRepository;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AuthenticationService
 {
+    private Session $session;
+
     public function __construct(
         private TurboUserRepository $userRepository,
-        private SessionInterface $session,
-    ) {}
+        private RequestStack $requestStack,
+    ) {
+        $this->session = $this->requestStack->getSession();
+    }
 
     public function authenticate(string $username, string $password): void
     {
