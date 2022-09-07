@@ -1,0 +1,13 @@
+<div class="container">
+  <ng-container *ngIf="lives >= 1; else noLive" [ngTemplateOutlet]="live"></ng-container>
+  <ng-container *ngIf="lives >= 2; else noLive" [ngTemplateOutlet]="live"></ng-container>
+  <ng-container *ngIf="lives >= 3; else noLive" [ngTemplateOutlet]="live"></ng-container>
+
+
+  <ng-template #live>
+    <img class="container--image" src="assets/lives.png">
+  </ng-template>
+  <ng-template #noLive>
+    <img class="container--image" src="assets/noLive.png">
+  </ng-template>
+</div>

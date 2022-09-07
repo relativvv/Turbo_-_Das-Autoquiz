@@ -26,6 +26,7 @@ import { ChangePasswordModalComponent } from './components/user-details/change-p
 import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
+import {QuizModule} from "./components/quiz/quiz.module";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {ToastrModule} from "ngx-toastr";
     LoginComponent,
     ModeCardComponent,
     UserDetailsComponent,
-    ChangePasswordModalComponent
+    ChangePasswordModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +59,7 @@ import {ToastrModule} from "ngx-toastr";
     ReactiveFormsModule,
     MatDialogModule,
     HttpClientModule,
+    QuizModule,
     ToastrModule.forRoot()
   ],
   providers: [],
