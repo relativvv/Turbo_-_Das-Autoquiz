@@ -17,8 +17,8 @@ use Symfony\Component\Validator\Constraints\Regex;
 class UserController extends AbstractController
 {
     public function __construct(
-        private AuthenticationService $authenticationService,
-        private ValidationService $validationService
+        private readonly AuthenticationService $authenticationService,
+        private readonly ValidationService $validationService
     ) {}
 
     /**
