@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TurboQuestionRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(private readonly ManagerRegistry $registry)
     {
         parent::__construct($registry, TurboQuestion::class);
     }
@@ -63,4 +63,9 @@ class TurboQuestionRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function createQuestion(TurboQuestion $question): void
+    {
+        $entityManager = $this->registry->getManager();
+        $entityManager->persist($question);
+    }
 }
