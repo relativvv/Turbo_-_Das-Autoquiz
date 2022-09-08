@@ -105,7 +105,6 @@ class UserController extends AbstractController
         $data = $request->request->all();
 
         $fields = [
-            'password' => new Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!\.\$%\-_])[a-zA-Z\d!\.\$%\-_]{8,64}$/'),
         ];
 
         if (isset($data['email'])) {
@@ -113,20 +112,21 @@ class UserController extends AbstractController
         }
 
         if (isset($data['new_password'])) {
+            if (!$this->authenticationService->compareSecrets($data['password'])) {
+                throw new SystemException('Ungültiges Passwort');
+            }
+
             $fields['new_password'] = new Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!\.\$%\-_])[a-zA-Z\d!\.\$%\-_]{8,64}$/');
         }
 
         if (isset($data['avatar'])) {
-            $fields['avatar'] = new Image();
+            $fields['avatar'] = new NotBlank();
         }
 
         $collection = new Collection($fields);
 
         $this->validationService->validate($data, $collection);
 
-        if (!$this->authenticationService->compareSecrets($data['password'])) {
-            throw new SystemException('Ungültiges Passwort');
-        }
 
         $request = new UpdateIdentityRequest($this->authenticationService->getIdentity());
         $request->email = $data['email'] ?? null;

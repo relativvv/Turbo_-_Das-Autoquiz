@@ -59,6 +59,10 @@ export class UserService {
         }));
   }
 
+  public updateUser(payload: any): Observable<User> {
+    return this.httpClient.patch<User>(environment.backend + '/api/user/update', payload);
+  }
+
   public get currentUserValue(): User {
     return this.currentUserObject.value;
   }

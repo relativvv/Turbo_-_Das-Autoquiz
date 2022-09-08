@@ -40,7 +40,8 @@ class TurboUser
             'email' => $this->getEmail(),
             'highestStreak' => $this->getHighestStreak(),
             'highestOverallStreak' => $this->getHighestOverallStreak(),
-            'playedGames' => $this->getPlayedGames()
+            'playedGames' => $this->getPlayedGames(),
+            'image' => $this->getImage()
         ];
     }
 

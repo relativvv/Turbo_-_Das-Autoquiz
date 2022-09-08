@@ -41,7 +41,7 @@ export class QuizComponent implements OnInit {
       this.difficulty = params['difficulty'];
 
       if(this.category) {
-        if(!(this.category === 'Motor' || this.category === 'Technik' || this.category === 'Marken' || this.category === 'StVO' || this.category === 'Wer, wann und wo?')) {
+        if(!(this.category === 'Motor' || this.category === 'Technik' || this.category === 'Marken' || this.category === 'StVO' || this.category === 'www')) {
           this.router.navigate(['/']);
           this.toastService.error('Ein Fehler ist aufgetreten.');
           return;
