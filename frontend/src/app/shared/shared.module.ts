@@ -15,9 +15,10 @@ import {MatMenuModule} from "@angular/material/menu";
     HeaderComponent,
     ProfileComponent
   ],
-  exports: [
-    HeaderComponent
-  ],
+    exports: [
+        HeaderComponent,
+        ProfileComponent
+    ],
     imports: [
         CommonModule,
         MatIconModule,

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="container--answer"
+       *ngFor="let answer of answers"
+       [class.locked]="lockedAnswer && answer === lockedAnswer"
+       [class.correct]="correctAnswer && answer === correctAnswer"
+       [class.wrong]="correctAnswer && answer !== correctAnswer"
+       (click)="lockAnswer(answer)">
+    <ngx-typed-js [strings]="[answer]" [showCursor]="false" [typeSpeed]="14">
+      <h2 class="typing"></h2>
+    </ngx-typed-js>
+  </div>
+</div>

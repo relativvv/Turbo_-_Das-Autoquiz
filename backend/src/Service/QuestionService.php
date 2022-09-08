@@ -12,31 +12,24 @@ class QuestionService
         private readonly TurboQuestionRepository $questionRepository
     ){}
 
-    public function getQuestionPerDifficulty(string $difficulty): string|array|int
+    public function getQuestionPerDifficulty(string $difficulty): TurboQuestion
     {
-        $question = $this->questionRepository->findBy(['difficulty' => $difficulty]);
+        $questions = $this->questionRepository->findBy(['difficulty' => $difficulty]);
 
-        return array_rand($question);
+        return $questions[array_rand($questions)];
     }
 
-    public function getQuestionPerCategory(string $category): array|int|string
+    public function getQuestionPerCategory(string $category): TurboQuestion
     {
-        $question = $this->questionRepository->findBy(['category' => $category]);
+        $questions = $this->questionRepository->findBy(['category' => $category]);
 
-        return array_rand($question);
+        return $questions[array_rand($questions)];
     }
 
-    public function checkQuestion($data): ?TurboQuestion
+    public function checkQuestion($data): TurboQuestion
     {
-        $question = $this->questionRepository->findOneBy(['id'], $data['id']);
+        $question = $this->questionRepository->findOneBy(['id' => $data['id']]);
 
-        $answer = $data['answer'];
-
-        if ($question->getCorrectAnswer() == $answer)
-        {
-            return $question;
-        }
-
-        return null;
+        return $question;
     }
 }

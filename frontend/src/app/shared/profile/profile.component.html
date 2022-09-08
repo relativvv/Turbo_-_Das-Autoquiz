@@ -1,6 +1,7 @@
 <div class="container">
   <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
     <img
+      *ngIf="user"
       routerLink="/"
       class="container--image"
       alt="profile_picture"
@@ -8,6 +9,7 @@
       [matMenuTriggerFor]="menu"
     />
     <mat-menu #menu="matMenu">
+      <button [routerLink]="'/user/' + user.username" mat-menu-item>Profil</button>
       <button (click)="logout()" mat-menu-item>Ausloggen</button>
     </mat-menu>
   </ng-container>

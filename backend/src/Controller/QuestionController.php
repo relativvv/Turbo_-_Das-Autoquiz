@@ -7,26 +7,36 @@ use App\Service\QuestionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    public function __construct(private readonly QuestionService $questionService)
-    {}
+    public function __construct(private readonly QuestionService $questionService) { }
 
-    public function getQuestionPerDifficulty(string $difficulty): array|int|string
+
+    /**
+     * @Route("/api/get/question/difficulty/{difficulty}", name="api.question.difficulty", methods={"GET"})
+     */
+    public function getQuestionPerDifficulty(string $difficulty): JsonResponse
     {
-        return new JsonResponse($this->questionService->getQuestionPerDifficulty($difficulty));
+        return new JsonResponse($this->questionService->getQuestionPerDifficulty($difficulty)->toArrayWithoutCorrectAnswer());
     }
 
-    public function getQuestionPerCategory(string $category): array|int|string
+    /**
+     * @Route("/api/get/question/category/{category}", name="api.question.category", methods={"GET"})
+     */
+    public function getQuestionPerCategory(string $category): JsonResponse
     {
-        return new JsonResponse($this->questionService->getQuestionPerCategory($category));
+        return new JsonResponse($this->questionService->getQuestionPerCategory($category)->toArrayWithoutCorrectAnswer());
     }
 
-    public function checkQuestion(Request $request): ?TurboQuestion
+    /**
+     * @Route("/api/check/question", name="api.question.check", methods={"POST"})
+     */
+    public function checkQuestion(Request $request): JsonResponse
     {
         $data = $request->request->all();
 
-        return $this->questionService->checkQuestion($data);
+        return new JsonResponse($this->questionService->checkQuestion($data)->toArrayWithCorrectAnswer());
     }
 }

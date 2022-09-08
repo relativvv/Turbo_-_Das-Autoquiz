@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div *ngIf="quiz && quiz.gameState !== 'waiting'; else waitingOverlay" class="container">
+  <div class="container--top-bar">
+    <app-lives [lives]="lives"></app-lives>
+<!--    <app-joker></app-joker>-->
+  </div>
+
+  <app-question
+    *ngIf="quiz.question"
+    [question]="quiz.question?.question"
+    [timer]="timeString"
+  ></app-question>
+  <app-answers
+    [answers]="quiz.question?.answers"
+    [lockedAnswer]="lockedAnswer"
+    [correctAnswer]="quiz.question?.correctAnswer"
+    [gameState]="quiz.gameState"
+    (answerLocked)="revealAnswer($event)">
+  </app-answers>
+</div>
+
+<ng-template #waitingOverlay>
+  <div class="waiting">
+    <h1>{{ countdown }}</h1>
+  </div>
+</ng-template>

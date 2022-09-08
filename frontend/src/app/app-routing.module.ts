@@ -6,6 +6,7 @@ import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {UserDetailsComponent} from "./components/user-details/user-details.component";
+import {QuizComponent} from "./components/quiz/quiz.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user/:userName', component: UserDetailsComponent },
+  { path: 'quiz/category/:category', component: QuizComponent },
+  { path: 'quiz/difficulty/:difficulty', component: QuizComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
