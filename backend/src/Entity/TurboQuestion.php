@@ -32,7 +32,7 @@ class TurboQuestion
     private ?string $category = null;
 
     #[ORM\Column]
-    private ?int $difficulty = null;
+    private ?string $difficulty = null;
 
     public function getId(): ?int
     {
@@ -111,12 +111,12 @@ class TurboQuestion
         return $this;
     }
 
-    public function getDifficulty(): ?int
+    public function getDifficulty(): ?string
     {
         return $this->difficulty;
     }
 
-    public function setDifficulty(int $difficulty): self
+    public function setDifficulty(string $difficulty): self
     {
         $this->difficulty = $difficulty;
 
