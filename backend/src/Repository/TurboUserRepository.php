@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\TurboUser;
+use App\Exception\SystemException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<TurboUser>
@@ -80,6 +83,69 @@ class TurboUserRepository extends ServiceEntityRepository
             ])
             ->getQuery()
             ->execute();
+    }
+
+    public function updateUserStreakInARow(int $acutalId, int $id, int $streak)
+    {
+        if ($acutalId === $id)
+        {
+            $this->createQueryBuilder('u')
+                ->update()
+                ->set('u.highestStreak', ':highestStreak')
+                ->where('u.id = :id')
+                ->setParameters([
+                    'id' => $id,
+                    'highestStreak' => $streak
+                ])
+                ->getQuery()
+                ->execute();
+        }
+        else
+        {
+            throw new SystemException('Du kannst nur deine Statistiken ändern.', Response::HTTP_UNAUTHORIZED);
+        }
+    }
+
+    public function updateUserOverallStreak(int $acutalId, int $id, int $streak)
+    {
+        if ($acutalId === $id)
+        {
+            $this->createQueryBuilder('u')
+                ->update()
+                ->set('u.highestOverallStreak', ':highestOverallStreak')
+                ->where('u.id = :id')
+                ->setParameters([
+                    'id' => $id,
+                    'highestOverallStreak' => $streak
+                ])
+                ->getQuery()
+                ->execute();
+        }
+        else
+        {
+            throw new SystemException('Du kannst nur deine Statistiken ändern.', Response::HTTP_UNAUTHORIZED);
+        }
+    }
+
+    public function updatePlayedGames(int $acutalId, int $id, int $playedGames)
+    {
+        if ($acutalId === $id)
+        {
+            $this->createQueryBuilder('u')
+                ->update()
+                ->set('u.playedGames', ':playedGames')
+                ->where('u.id = :id')
+                ->setParameters([
+                    'id' => $id,
+                    'playedGames' => $playedGames
+                ])
+                ->getQuery()
+                ->execute();
+        }
+        else
+        {
+            throw new SystemException('Du kannst nur deine Statistiken ändern.', Response::HTTP_UNAUTHORIZED);
+        }
     }
 
     public function fetchSecret(int $id): string
