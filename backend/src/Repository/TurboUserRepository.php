@@ -63,4 +63,33 @@ class TurboUserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult() > 0;
     }
+
+    public function updateUser(array $data): void
+    {
+        $this->createQueryBuilder('u')
+            ->update()
+            ->set('u.email', ':email')
+            ->set('u.password', ':password')
+            ->set('u.image', ':image')
+            ->where('u.id = :id')
+            ->setParameters([
+                'id' => $data['id'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'image' => $data['image'],
+            ])
+            ->getQuery()
+            ->execute();
+    }
+
+    public function fetchSecret(int $id): string
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.password')
+            ->where('u.id = :id')
+            ->setMaxResults(1)
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
