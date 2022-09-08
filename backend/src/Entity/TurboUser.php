@@ -31,6 +31,9 @@ class TurboUser
     #[ORM\Column(nullable: true)]
     private ?int $playedGames = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $image = null;
+
     public function toArray(): array {
         return [
             'username' => $this->getUsername(),
@@ -116,5 +119,15 @@ class TurboUser
         $this->playedGames = $playedGames;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 }

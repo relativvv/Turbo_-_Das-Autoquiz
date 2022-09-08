@@ -26,10 +26,12 @@ class ErrorResponseSubscriber implements EventSubscriberInterface
             return;
         }
 
+        $code = $exception->getCode() !== 0 ? $exception->getCode() : Response::HTTP_BAD_REQUEST;
+
         $event->allowCustomResponseCode();
         $event->stopPropagation();
         $event->setResponse(new JsonResponse([
             'message' => $exception->getMessage(),
-        ], Response::HTTP_BAD_REQUEST));
+        ], $code));
     }
 }
