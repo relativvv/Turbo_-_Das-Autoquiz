@@ -19,6 +19,10 @@ export class UserDetailsComponent implements OnInit {
   userForm: FormGroup;
   user: User;
 
+  selectedFile: any;
+  selectedFileBase64: string;
+
+
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly dialogService: MatDialog,
@@ -31,6 +35,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(document.cookie);
     if(!this.userService.isLoggedIn()) {
       this.router.navigate(['/']);
       this.toastService.error('Du bist nicht eingeloggt!');
@@ -66,6 +71,63 @@ export class UserDetailsComponent implements OnInit {
 
   openChangePassword(): void {
     this.dialogService.open(ChangePasswordModalComponent);
+  }
+
+  updateEmail(): void {
+    const payload = {
+      email: this.userForm.get('email')
+    };
+
+    this.userService.updateUser(payload);
+  }
+
+  updateAvatar(): void {
+    const payload = {
+      avatar: this.selectedFileBase64
+    }
+
+    this.userService.updateUser(payload).subscribe({
+      next: () => {
+        this.toastService.success('Avatar erfolgreich geändert!')
+      },
+      error: () => {
+        this.toastService.error('Avatar konnte nicht geändert werden');
+      }
+    });
+  }
+
+  picked(event: any) {
+    const file: File = event.target.files[0];
+    this.selectedFile = file;
+    this.handleInputChange(file);
+  }
+
+  handleInputChange(files): void {
+    const file = files;
+    const pattern = /image-*/;
+    const reader = new FileReader();
+
+    if (!file.type.match(pattern)) {
+      this.toastService.error('The file has an invalid format');
+      this.selectedFile = null;
+      (document.getElementById('picture') as HTMLInputElement).value = null;
+      return;
+    }
+    reader.onloadend = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+  _handleReaderLoaded(e): void {
+    const reader = e.target;
+    this.selectedFileBase64 = 'data:image/png;base64,' + reader.result.substr(reader.result.indexOf(',') + 1);
+  }
+
+  updatePassword(): void {
+    const payload = {
+      oldPassword: null,
+      new_password: null
+    }
+    this.userService.updateUser(payload);
   }
 
 }

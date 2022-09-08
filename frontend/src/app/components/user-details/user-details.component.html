@@ -1,9 +1,10 @@
 <app-header></app-header>
 <button class="back" mat-raised-button routerLink=""><mat-icon>arrow_left</mat-icon> Zurück</button>
 <div class="container">
-  <div class="container--image">
-    <img src="assets/logo.png">
-    <button class="container--image__upload" color="warn" mat-raised-button><mat-icon>upload</mat-icon> Hochladen</button>
+  <div *ngIf="user" class="container--image">
+    <img [src]="user.image ? user.image : 'assets/logo.png'">
+    <input type="file" (change)="picked($event)" id="picture">
+    <button class="container--image__upload" color="warn" mat-raised-button (click)="updateAvatar()"><mat-icon>upload</mat-icon> Hochladen</button>
   </div>
   <div class="container--details">
     <mat-card>

@@ -29,17 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.loginUser(
-      this.form.get('identity').value,
-      this.form.get('password').value
-    ).subscribe({
-      next: () => {
-        this.toastService.success('Erfolgreich eingeloggt!')
-        this.router.navigate(['/']);
-      }, error: () => {
-        this.toastService.error('Einloggen fehlgeschlagen!')
-      }
-    });
+    if(!this.form.invalid) {
+      this.userService.loginUser(
+        this.form.get('identity').value,
+        this.form.get('password').value
+      ).subscribe({
+        next: () => {
+          this.toastService.success('Erfolgreich eingeloggt!')
+          this.router.navigate(['/']);
+        }, error: () => {
+          this.toastService.error('Einloggen fehlgeschlagen!')
+        }
+      });
+    }
   }
 
   private createForm(): void {

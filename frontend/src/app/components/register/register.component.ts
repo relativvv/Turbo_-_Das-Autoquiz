@@ -39,25 +39,27 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    if(this.form.get('password').value !== this.form.get('repeatPassword').value) {
-      this.toastService.error('Die Passwörter stimmen nicht überein');
-      return;
-    }
+    if(!this.form.invalid) {
+      if(this.form.get('password').value !== this.form.get('repeatPassword').value) {
+        this.toastService.error('Die Passwörter stimmen nicht überein');
+        return;
+      }
 
-    this.userService.registerUser(
-      this.form.get('username').value,
-      this.form.get('email').value,
-      this.form.get('password').value
-    ).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-        this.toastService.success('Erfolgreich registriert!');
-      },
-      error: (err) => {
-          if(err.error?.message) {
-            this.toastService.error(err.error.message.replace('\n', '<br>'), '', { enableHtml: true });
+      this.userService.registerUser(
+        this.form.get('username').value,
+        this.form.get('email').value,
+        this.form.get('password').value
+      ).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+          this.toastService.success('Erfolgreich registriert!');
+        },
+        error: (err) => {
+            if(err.error?.message) {
+              this.toastService.error(err.error.message.replace('\n', '<br>'), '', { enableHtml: true });
+            }
           }
-        }
-    });
+      });
+    }
   }
 }
