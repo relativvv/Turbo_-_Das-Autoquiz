@@ -16,8 +16,8 @@ class AuthenticationService
     private Session $session;
 
     public function __construct(
-        private TurboUserRepository $userRepository,
-        private RequestStack $requestStack,
+        private readonly TurboUserRepository $userRepository,
+        private readonly RequestStack        $requestStack,
     ) {
         try {
             $this->session = $this->requestStack->getSession();
