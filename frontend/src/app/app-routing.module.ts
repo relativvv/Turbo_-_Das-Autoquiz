@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user/:userName', component: UserDetailsComponent },
-  { path: 'quiz', component: QuizComponent },
+  { path: 'quiz/category/:category', component: QuizComponent },
+  { path: 'quiz/difficulty/:difficulty', component: QuizComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class QuestionComponent implements OnInit {
 
   @Input() question: string;
+  @Input() timer: string;
 
   constructor() { }
 

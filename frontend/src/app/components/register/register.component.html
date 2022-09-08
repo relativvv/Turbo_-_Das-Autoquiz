@@ -26,7 +26,7 @@
       </form>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button [disabled]="form.invalid" [class.disabled]="form.invalid" class="register-button" mat-raised-button (click)="register()">
+      <button type="submit" [disabled]="form.invalid" [class.disabled]="form.invalid" class="register-button" mat-raised-button (click)="register()">
         <mat-icon>play_arrow</mat-icon>
         Registrieren
       </button>

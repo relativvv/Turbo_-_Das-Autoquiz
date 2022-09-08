@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +9,16 @@ import {UserService} from "../../services/user.service";
 })
 export class ProfileComponent implements OnInit {
 
+  user: User;
+
   constructor(
     private readonly userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    if(this.isLoggedIn()) {
+      this.getUser();
+    }
   }
 
   isLoggedIn(): boolean {
@@ -21,6 +27,12 @@ export class ProfileComponent implements OnInit {
 
   logout(): void {
     this.userService.logout().subscribe();
+  }
+
+  private getUser(): void {
+    this.userService.currentUser.subscribe((user: User) => {
+      this.user = user;
+    })
   }
 
 }

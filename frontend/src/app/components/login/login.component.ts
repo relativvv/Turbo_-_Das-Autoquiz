@@ -32,9 +32,13 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(
       this.form.get('identity').value,
       this.form.get('password').value
-    ).subscribe(() => {
-      this.toastService.success('Erfolgreich eingeloggt!')
-      this.router.navigate(['/']);
+    ).subscribe({
+      next: () => {
+        this.toastService.success('Erfolgreich eingeloggt!')
+        this.router.navigate(['/']);
+      }, error: () => {
+        this.toastService.error('Einloggen fehlgeschlagen!')
+      }
     });
   }
 

@@ -34,6 +34,27 @@ class TurboQuestion
     #[ORM\Column]
     private ?string $difficulty = null;
 
+    public function toArrayWithoutCorrectAnswer(): array {
+        return [
+            'id' => $this->getId(),
+            'question' => $this->getQuestion(),
+            'answers' => $this->getAllAnswers(),
+            'category' => $this->getCategory(),
+            'difficulty' => $this->getDifficulty()
+        ];
+    }
+
+    public function toArrayWithCorrectAnswer(): array {
+        return [
+            'id' => $this->getId(),
+            'question' => $this->getQuestion(),
+            'answers' => $this->getAllAnswers(),
+            'correctAnswer' => $this->getCorrectAnswer(),
+            'category' => $this->getCategory(),
+            'difficulty' => $this->getDifficulty()
+        ];
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +82,17 @@ class TurboQuestion
         $this->correctAnswer = $correctAnswer;
 
         return $this;
+    }
+
+    public function getAllAnswers(): array {
+        $answers = [
+            $this->getCorrectAnswer(),
+            $this->getFirstWrongAnswer(),
+            $this->getSecondWrongAnswer(),
+            $this->getThirdWrongAnswer()
+        ];
+        shuffle($answers);
+        return $answers;
     }
 
     public function getFirstWrongAnswer(): ?string

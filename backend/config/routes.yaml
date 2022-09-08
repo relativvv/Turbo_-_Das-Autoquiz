@@ -1,12 +1,3 @@
-api_get_question_per_difficulty:
-    path: /api/get/question/difficulty/{difficulty}
-    controller: App\Controller\QuestionController::getQuestionPerDifficulty
-    methods: GET
-api_get_question_per_category:
-    path: /api/get/question/category/{category}
-    controller: App\Controller\QuestionController::getQuestionPerCategory
-    methods: GET
-api_post_check_answer:
-    path: /api/check/question
-    controller: App\Controller\QuestionController::checkQuestion
-    methods: POST
+controllers:
+    resource: ../src/Controller/
+    type: attribute
